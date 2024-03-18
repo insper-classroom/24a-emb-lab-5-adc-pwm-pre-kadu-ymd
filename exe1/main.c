@@ -9,14 +9,13 @@
 #include "hardware/gpio.h"
 #include "hardware/adc.h"
 
-const float conversion_factor = 3.3f / (1 << 12);
-uint16_t result;
-
 void adc_1_task(void *p) {
     adc_init();
     adc_gpio_init(27);
     adc_gpio_init(26);
 
+    const float conversion_factor = 3.3f / (1 << 12);
+    uint16_t result;
     while (1) {
         adc_select_input(1);
         
